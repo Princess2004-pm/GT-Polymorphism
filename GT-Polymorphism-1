@@ -1,0 +1,119 @@
+#include <iostream>
+using namespace std;
+
+class Calculator {
+public:
+    virtual void add(int a, int b) {
+        cout << "Result: " << a + b << endl;
+    }
+
+    virtual void add(int a, int b, int c) {
+        cout << "Result: " << a + b + c << endl;
+    }
+
+    virtual void add(float a, float b) {
+        cout << "Result: " << a + b << endl;
+    }
+
+    virtual void subtract(int a, int b) {
+        cout << "Result: " << a - b << endl;
+    }
+
+    virtual void multiply(int a, int b) {
+        cout << "Result: " << a * b << endl;
+    }
+
+    virtual void divide(float a, float b) {
+        if (b == 0) {
+            cout << "Error: Division by zero!" << endl;
+        } else {
+            cout << "Result: " << a / b << endl;
+        }
+    }
+};
+
+class SimpleCalculator : public Calculator {
+public:
+   
+    void add(int a, int b) override {
+        cout << "Add two integers: " << a + b << endl;
+    }
+
+    void add(int a, int b, int c) override {
+        cout << "Add three integers: " << a + b + c << endl;
+    }
+
+    void add(float a, float b) override {
+        cout << "Add two floats: " << a + b << endl;
+    }
+
+    void subtract(int a, int b) override {
+        cout << "Subtract two integers: " << a - b << endl;
+    }
+
+    void multiply(int a, int b) override {
+        cout << "Multiply two integers: " << a * b << endl;
+    }
+
+    void divide(float a, float b) override {
+        if (b == 0) {
+            cout << "Error: Division by zero!" << endl;
+        } else {
+            cout << "Divide two floats: " << a / b << endl;
+        }
+    }
+};
+
+int main() {
+    SimpleCalculator calc;
+    int choice, num1, num2, num3;
+    float fnum1, fnum2;
+
+    cout << "=== Simple Calculator ===" << endl;
+    cout << "1. Add two integers" << endl;
+    cout << "2. Add three integers" << endl;
+    cout << "3. Add two floats" << endl;
+    cout << "4. Subtract two integers" << endl;
+    cout << "5. Multiply two integers" << endl;
+    cout << "6. Divide two floats" << endl;
+
+    cout << "Enter your choice (1-6): ";
+    cin >> choice;
+
+    switch(choice) {
+        case 1:
+            cout << "Enter two integers: ";
+            cin >> num1 >> num2;
+            calc.add(num1, num2);
+            break;
+        case 2:
+            cout << "Enter three integers: ";
+            cin >> num1 >> num2 >> num3;
+            calc.add(num1, num2, num3);
+            break;
+        case 3:
+            cout << "Enter two floats: ";
+            cin >> fnum1 >> fnum2;
+            calc.add(fnum1, fnum2);
+            break;
+        case 4:
+            cout << "Enter two integers: ";
+            cin >> num1 >> num2;
+            calc.subtract(num1, num2);
+            break;
+        case 5:
+            cout << "Enter two integers: ";
+            cin >> num1 >> num2;
+            calc.multiply(num1, num2);
+            break;
+        case 6:
+            cout << "Enter two floats: ";
+            cin >> fnum1 >> fnum2;
+            calc.divide(fnum1, fnum2);
+            break;
+        default:
+            cout << "Invalid choice" << endl;
+    }
+
+    return 0;
+}
