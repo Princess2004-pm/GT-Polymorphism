@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+
+
+class Employee {
+public:
+    virtual void showDetails() {
+        cout << "Employee details" << endl;
+    }
+    
+    virtual ~Employee() {} 
+};
+
+class Manager : public Employee {
+public:
+    void showDetails() override {
+        cout << "I am a Manager. I manage teams." << endl;
+    }
+};
+
+class Developer : public Employee {
+public:
+    void showDetails() override {
+        cout << "I am a Developer. I write code." << endl;
+    }
+};
+
+int main() {
+    int choice;
+    
+    cout << "What type of employee would you like to create?\n";
+    cout << "1. Manager\n";
+    cout << "2. Developer\n";
+    cout << "Enter your choice (1 or 2): ";
+    cin >> choice;
+    
+    Employee* employee = nullptr;
+    
+    if (choice == 1) {
+        employee = new Manager();
+    } else if (choice == 2) {
+        employee = new Developer();
+    } else {
+        cout << "Invalid choice!" << endl;
+        return 1;
+    }
+
+    employee->showDetails(); 
+
+    delete employee; 
+    return 0;
+}
